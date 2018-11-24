@@ -184,7 +184,7 @@ class GroupDetails extends Component {
 										Show Names
 									</button>
 								</div>
-								<div id="collapseOne" className="collapse show"
+								<div id="collapseOne" className={this.state.results ? "collapse":"collapse show"}
 								     data-parent="#accordion">
 									<ul className="list-group">
 										{this.state.group && Object.entries(this.state.group).map(
@@ -217,7 +217,7 @@ class GroupDetails extends Component {
 											Show Results
 										</button>
 									</div>
-									<div id="resultsTab" className="collapse"
+									<div id="resultsTab" className={this.state.results ? "collapse show":"collapse"}
 									     data-parent="#accordion">
 										<div className="list-group">
 											{this.state.results.map((e, i) => {
@@ -236,13 +236,15 @@ class GroupDetails extends Component {
 						<div className={"container pt-3"}>
 							<div className="form-group row">
 								<div className="col-12">
-									<button onClick={this.runStart}
-									        className={"btn btn-primary"}
-									        disabled={!!this.state.errorMessage
-									        || !this.state.group || Object.keys(
-											        this.state.group).length % 2 !== 0
-									        }>RUN!
-									</button>
+
+										<button onClick={this.runStart}
+										        className={this.state.results ? "btn btn-warning" : "btn btn-primary"}
+										        disabled={!!this.state.errorMessage
+										        || !this.state.group || Object.keys(
+												        this.state.group).length % 2 !== 0
+										        }>{this.state.results ? "Reset!" : "RUN!"}
+										</button>
+
 									<button onClick={this.deleteGroup}
 									        className={"btn btn-danger mx-3"}>Delete Group!
 									</button>
